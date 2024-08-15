@@ -1,0 +1,43 @@
+*, *::before, *::after {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica,sans-serif;
+    box-sizing: border-box;
+}
+
+[data-expandable] [data-expand-text] {
+    --line-height: 1.5;
+    --lines-to-show: 3;
+    position: relative;
+    box-sizing: border-box;
+    line-height: var(--line-height);
+    overflow: hidden;
+    height: calc(var(--line-height) * var(--lines-to-show) * 1em);
+}
+
+[data-overflow="false"] [data-expand-text] {
+    height: initial;
+}
+
+[data-expandable].expanded [data-expand-text] {
+    height: initial;
+}
+
+[data-overflow="false"] [data-expand-button] {
+    display: none;
+}
+
+[data-expandable] [data-expand-text]::before {
+    --background-color: white;
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, transparent, var(--background-color));
+}
+
+[data-overflow="false"] [data-expand-text]::before,
+[data-expandable].expanded [data-expand-text]::before {
+    background: initial;
+}
